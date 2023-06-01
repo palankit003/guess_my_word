@@ -1,0 +1,50 @@
+.parent {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 1rem;
+}
+
+.screen {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  width: 12rem;
+  gap: 5px;
+}
+.sbox {
+  width: 4rem;
+  height: 4rem;
+  background: aliceblue;
+  border: 1px solid lightslategray;
+}
+.keyboardContainer {
+  position: fixed;
+  width: 100vw;
+  bottom: 0;
+  left: 0;
+}
+.keyboard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  padding-bottom: 2rem;
+}
+.firstRow,
+.secondRow,
+.thirdRow {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.key {
+  padding: 0.5rem;
+  font-weight: bold;
+  background-color: cadetblue;
+  border: 1px solid grey;
+  border-radius: 5px;
+  cursor: pointer;
+  user-select: none;
+}
+.key:active {
+  background-color: hsl(182, 25%, 30%);
+}

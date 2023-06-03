@@ -1,62 +1,187 @@
+import React, { useEffect, useState } from "react";
 import Styles from "./Game.module.css";
 interface data {
   word: string;
 }
-const Game = (props: data) => {
+const Game = (prop: data) => {
+  const { word } = prop;
+  const arr = word.toUpperCase().split("");
+  const [filledArr, setFilledArr] = useState<string[]>([]);
+  const [victory, setVictory] = useState(false);
+  const [lost, setLost] = useState(false);
+
+  useEffect(() => {
+    const tempArr: string[] = [];
+    arr.map((e: string) => {
+      if (e == " ") tempArr.push(" ");
+      else tempArr.push("");
+    });
+    setFilledArr(tempArr);
+  }, []);
+  const [first, setFirst] = useState("");
+  const [second, setSecond] = useState("");
+  const [third, setThird] = useState("");
+  const [fourth, setFourth] = useState("");
+  const [fifth, setFifth] = useState("");
+  const [sixth, setSixth] = useState("");
+  const [seventh, setSeventh] = useState("");
+  const [eigth, setEigth] = useState("");
+  const [ninth, setNinth] = useState("");
+  useEffect(() => {
+    if (JSON.stringify(arr) === JSON.stringify(filledArr)) {
+      setVictory(true);
+    }
+    if (ninth) {
+      setLost(true);
+    }
+  }, [arr, filledArr, ninth]);
+  const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    const letter = e.currentTarget.innerText;
+    console.log(arr);
+    let indices = [];
+    if (arr.includes(letter)) {
+      for (let i = 0; i < arr.length; i++) {
+        if (arr[i] == letter) {
+          indices.push(i);
+        }
+      }
+      for (let i = 0; i < indices.length; i++) {
+        filledArr[indices[i]] = arr[indices[i]];
+      }
+      indices = [];
+      const newArr = [...filledArr];
+      setFilledArr(newArr);
+    } else {
+      if (!first) setFirst(letter);
+      if (first && !second) setSecond(letter);
+      if (second && !third) setThird(letter);
+      if (third && !fourth) setFourth(letter);
+      if (fourth && !fifth) setFifth(letter);
+      if (fifth && !sixth) setSixth(letter);
+      if (sixth && !seventh) setSeventh(letter);
+      if (seventh && !eigth) setEigth(letter);
+      if (eigth && !ninth) {
+        setNinth(letter);
+      }
+    }
+    console.log(letter, arr);
+
+    console.log(filledArr, "ok");
+  };
   return (
     <>
       <div className={Styles.parent}>
         <div className={Styles.screen}>
-          <div className={Styles.sbox}></div>
-          <div className={Styles.sbox}></div>
-          <div className={Styles.sbox}></div>
-          <div className={Styles.sbox}></div>
-          <div className={Styles.sbox}></div>
-          <div className={Styles.sbox}></div>
-          <div className={Styles.sbox}></div>
-          <div className={Styles.sbox}></div>
-          <div className={Styles.sbox}></div>
+          <div className={Styles.sbox}>{first}</div>
+          <div className={Styles.sbox}>{second}</div>
+          <div className={Styles.sbox}>{third}</div>
+          <div className={Styles.sbox}>{fourth}</div>
+          <div className={Styles.sbox}>{fifth}</div>
+          <div className={Styles.sbox}>{sixth}</div>
+          <div className={Styles.sbox}>{seventh}</div>
+          <div className={Styles.sbox}>{eigth}</div>
+          <div className={Styles.sbox}>{ninth}</div>
         </div>
-        <div className={Styles.gameBox}>Box</div>
+        <div className={Styles.gameBox}>
+          {filledArr.map((letter) => {
+            if (letter == " ") return <div className={Styles.emptyBox}></div>;
+            return <div className={Styles.correctLetter}>{letter}</div>;
+          })}
+        </div>
       </div>
       <div className={Styles.keyboardContainer}>
         <div className={Styles.keyboard}>
           <div className={Styles.firstRow}>
-            <div className={Styles.key}>Q</div>
-            <div className={Styles.key}>W</div>
-            <div className={Styles.key}>E</div>
-            <div className={Styles.key}>R</div>
-            <div className={Styles.key}>T</div>
-            <div className={Styles.key}>Y</div>
-            <div className={Styles.key}>U</div>
-            <div className={Styles.key}>I</div>
-            <div className={Styles.key}>O</div>
-            <div className={Styles.key}>P</div>
+            <div className={Styles.key} onClick={handleClick}>
+              Q
+            </div>
+            <div className={Styles.key} onClick={handleClick}>
+              W
+            </div>
+            <div className={Styles.key} onClick={handleClick}>
+              E
+            </div>
+            <div className={Styles.key} onClick={handleClick}>
+              R
+            </div>
+            <div className={Styles.key} onClick={handleClick}>
+              T
+            </div>
+            <div className={Styles.key} onClick={handleClick}>
+              Y
+            </div>
+            <div className={Styles.key} onClick={handleClick}>
+              U
+            </div>
+            <div className={Styles.key} onClick={handleClick}>
+              I
+            </div>
+            <div className={Styles.key} onClick={handleClick}>
+              O
+            </div>
+            <div className={Styles.key} onClick={handleClick}>
+              P
+            </div>
           </div>
           <div className={Styles.secondRow}>
-            <div className={Styles.key}>A</div>
-            <div className={Styles.key}>S</div>
-            <div className={Styles.key}>D</div>
-            <div className={Styles.key}>F</div>
-            <div className={Styles.key}>G</div>
-            <div className={Styles.key}>H</div>
-            <div className={Styles.key}>J</div>
-            <div className={Styles.key}>K</div>
-            <div className={Styles.key}>L</div>
+            <div className={Styles.key} onClick={handleClick}>
+              A
+            </div>
+            <div className={Styles.key} onClick={handleClick}>
+              S
+            </div>
+            <div className={Styles.key} onClick={handleClick}>
+              D
+            </div>
+            <div className={Styles.key} onClick={handleClick}>
+              F
+            </div>
+            <div className={Styles.key} onClick={handleClick}>
+              G
+            </div>
+            <div className={Styles.key} onClick={handleClick}>
+              H
+            </div>
+            <div className={Styles.key} onClick={handleClick}>
+              J
+            </div>
+            <div className={Styles.key} onClick={handleClick}>
+              K
+            </div>
+            <div className={Styles.key} onClick={handleClick}>
+              L
+            </div>
           </div>
           <div className={Styles.thirdRow}>
             <div className={Styles.key}>ENTER</div>
-            <div className={Styles.key}>Z</div>
-            <div className={Styles.key}>X</div>
-            <div className={Styles.key}>C</div>
-            <div className={Styles.key}>V</div>
-            <div className={Styles.key}>B</div>
-            <div className={Styles.key}>N</div>
-            <div className={Styles.key}>M</div>
+            <div className={Styles.key} onClick={handleClick}>
+              Z
+            </div>
+            <div className={Styles.key} onClick={handleClick}>
+              X
+            </div>
+            <div className={Styles.key} onClick={handleClick}>
+              C
+            </div>
+            <div className={Styles.key} onClick={handleClick}>
+              V
+            </div>
+            <div className={Styles.key} onClick={handleClick}>
+              B
+            </div>
+            <div className={Styles.key} onClick={handleClick}>
+              N
+            </div>
+            <div className={Styles.key} onClick={handleClick}>
+              M
+            </div>
             <div className={Styles.key}>BKS</div>
           </div>
         </div>
       </div>
+      {victory ? <div>You Won</div> : <></>}
+      {lost ? <div>You Lost</div> : <></>}
     </>
   );
 };

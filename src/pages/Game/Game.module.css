@@ -48,3 +48,23 @@
 .key:active {
   background-color: hsl(182, 25%, 30%);
 }
+.correctLetter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border: 1px solid black;
+  border-bottom: 2px solid purple;
+  background-color: aliceblue;
+  border-radius: 5px 5px 0 0;
+}
+.gameBox {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+}
+.emptyBox {
+  width: 2rem;
+  height: 2rem;
+}

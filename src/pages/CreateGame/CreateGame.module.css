@@ -18,3 +18,11 @@
 .btn:active {
   background-color: #3e1068;
 }
+.box {
+  border: none;
+  outline: none;
+  background-color: aliceblue;
+  border-radius: 5px;
+  padding: 1rem;
+  width: 80%;
+}

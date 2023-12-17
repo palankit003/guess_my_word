@@ -10,7 +10,7 @@ const Game = (prop: data) => {
   const [filledArr, setFilledArr] = useState<string[]>([]);
   const [victory, setVictory] = useState(false);
   const [lost, setLost] = useState(false);
-  const [wrongLetters, setWrongLetters] = useState<string[]>([]);
+  const [wrongLetters] = useState<string[]>([]);
 
   useEffect(() => {
     const tempArr: string[] = [];
@@ -40,7 +40,7 @@ const Game = (prop: data) => {
   const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
     e.preventDefault();
     const letter = e.currentTarget.innerText;
-    console.log(arr);
+
     let indices = [];
     if (arr.includes(letter)) {
       for (let i = 0; i < arr.length; i++) {
@@ -70,9 +70,6 @@ const Game = (prop: data) => {
         }
       }
     }
-    console.log(letter, arr);
-
-    console.log(filledArr, "ok");
   };
   return (
     <>

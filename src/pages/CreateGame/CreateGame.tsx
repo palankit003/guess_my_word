@@ -24,7 +24,6 @@ const CreateGame: FC<CreateGameProps> = ({ sendDataToParent }) => {
   const [word, setWord] = useState("");
   const handleWord = (event: any) => {
     setWord(event.target.value);
-    console.log(event.target.value);
   };
 
   const sendData = () => {
